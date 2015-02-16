@@ -9,7 +9,7 @@ class Factoid
 				value = args.join(' ')
 				@ego.db.hset 'baumibot_factoids', name, value, (err, data)=>
 					if data
-						@ego.bot.chat "@{user.username} Now I know #{name} is #{value}"
+						@ego.bot.chat "@#{user.username} Now I know #{name} is #{value}"
 					@logger.log err, data
 
 			if user.sub && cmd == "unlearn"
