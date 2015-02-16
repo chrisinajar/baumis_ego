@@ -9,6 +9,7 @@ domain = require 'domain'
 
 defaults = {
 	admins: ['chrisinajar']
+	subs: []
 }
 
 class BaumisEgo
