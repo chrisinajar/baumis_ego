@@ -5,6 +5,9 @@ class Factoid
 
 		@events.on 'command', (user, cmd, args)=>
 			if user.sub && cmd == "learn"
+				if args.length < 2
+					return
+
 				name = args.shift()
 				value = args.join(' ')
 				@ego.db.hset 'baumibot_factoids', name, value, (err, data)=>
