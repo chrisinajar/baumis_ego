@@ -130,6 +130,8 @@ class BaumisEgo
 			@prompt.log "#{user} is a #{type}"
 
 			if type == "subscriber"
+				if !@config.subs
+					@config.subs = []
 				index = @config.subs.indexOf(user)
 				if index != -1
 					@config.subs.splice index, 1
