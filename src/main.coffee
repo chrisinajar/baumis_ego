@@ -27,7 +27,6 @@ class BaumisEgo
 		@bot = new irc.client key
 		@bot._emit = @bot.emit
 		@bot.emit = (name)=>
-			# console.log arguments
 			@module.proxyEvent arguments
 			@bot._emit.apply(@bot, arguments)
 		@bot.chat = (msg)->
@@ -149,7 +148,7 @@ class BaumisEgo
 			cmd = message.substring(1, index)
 
 			if index == message.length
-				args = null
+				args = []
 			else
 				args = message.substring index
 				args = args.trim()
@@ -165,8 +164,14 @@ class BaumisEgo
 			else
 				user.sub = false
 
-
 			@bot.emit 'command', user, cmd, args
+
+		dm = (new RegExp('^@?' + config.irc.identity.username + '\\b\\s*')).exec(message)
+		if dm
+			@bot.emit 'message', user, message.substr(dm[0].length)
+
+
+
 
 
 	connect: =>
