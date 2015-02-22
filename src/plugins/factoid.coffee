@@ -13,6 +13,9 @@ class Factoid
 					@logger.log err, data
 
 			if user.sub && cmd == "unlearn"
+				if args.length == 0
+					return
+
 				name = args.shift()
 				@ego.db.hdel 'baumibot_factoids', name, (err, data)=>
 					if data
