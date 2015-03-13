@@ -11,8 +11,9 @@ class Factoid
 					if data
 						@ego.bot.chat "@#{user.username} Now I know #{name} is #{value}"
 					@logger.log err, data
+				return
 
-			if user.sub && cmd == "unlearn"
+			else if user.sub && cmd == "unlearn"
 				if args.length == 0
 					return
 
@@ -21,6 +22,7 @@ class Factoid
 					if data
 						@ego.bot.chat "I can't remember #{name}..."
 					@logger.log err, data
+				return
 
 			else
 				@ego.db.hget 'baumibot_factoids', cmd, (err, data)=>
